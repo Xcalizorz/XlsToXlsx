@@ -73,13 +73,21 @@ class FileManipulator:
         """
         for filepath in filepaths:
             # reading old xls files
-            xls_df = pd.read_excel(filepath)
+            xls_df = pd.read_excel(filepath, sheet_name=None)
+
+            # removing the .xls file
+            os.unlink(filepath)
 
             # Create a pandas excel writer using xlsxwriter engine
             writer = pd.ExcelWriter(filepath + "x", engine='xlsxwriter')
 
-            # Writing first sheet to the file
-            xls_df.to_excel(writer, sheet_name='Sheet1', index=False)
+            # if the file has more than 1 sheet
+            if len(xls_df) > 1:
+                for sheetname, info in xls_df.items():
+                    info.to_excel(writer, sheet_name=sheetname, index=False)
+            else:
+                # Writing first sheet to the file
+                xls_df.to_excel(writer, sheet_name='Sheet1', index=False)
 
             # To add more sheets
             # other_dataframe.to_excel(writer, sheet_name='Sheet2', index=False)

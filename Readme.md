@@ -1,19 +1,30 @@
-# PentestGenConverter
+# XlsToXlsx
 
-This program is specifically designed to convert old reports, created by the Pentestgenerator **older than** `v.1.0.0`, released in June 2018.
+You can convert all .xls files from a given input path to .xlsx
+Pictures won't be converted yet.
 
 ## How to use
 
-    Give the path to the report you want to convert, e.g.:
-    "C:\Users\zadjad.rezei\Desktop\bwb"
+### Install requirements
+    
+Install the requirements by
+
+    cd /PATH/TO/XlsToXlsx
+    pip install -r requirements.txt
+
+### Use the program
+
+    Give the path to the directory with the files you want to convert.
+
 
 ## What happens
 
-    1. All .xls files will be converted to equivalent .xlsx files
-    2. A Parameter.xlsx file will be created and filled
-      1. The program will fill in the Language and OWASP Parameters
-        1. Language: German
-        2. OWASP: 2013
-      2. You can change this, using Excel, after the conversion is done
-    3. TODO: new .Rnw files are downloaded from the Repo
-      1. Replace old .Rnw
+    1. A copy of the directory will be created 
+      1. Directoryname + "new"
+    2. All .xls files will be converted to .xlsx
+    3. Old .xls files will be deleted from the new directory
+
+## Example files
+
+There is a directory call "Example" - you can test the conversion using this directory.
+The .xls files were taken from [Carnegie Mellon University](https://www.cmu.edu/blackboard/files/evaluate/tests-example.xls)

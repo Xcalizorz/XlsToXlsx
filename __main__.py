@@ -1,10 +1,12 @@
 from FileManipulator import FileManipulator
+from tkinter.filedialog import askdirectory
 import os.path
 
 
 def __main__():
+
     # Path declaration block
-    input_path = os.path.normpath(r"/home/zj/Documents/Projects/Personal/XlsToXlsx/Example")
+    input_path = os.path.normpath(askdirectory())
     output_path = os.path.normpath(input_path + "_new")
 
     # Converting block
@@ -16,5 +18,6 @@ def __main__():
     xls_files = converter.find_files("(.*?).xls$")
 
     converter.xls_to_xlsx(xls_files)
+
 
 __main__()
