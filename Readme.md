@@ -15,6 +15,8 @@ Install the requirements by
 
 ### Use the program
 
+Please keep in mind, this is a Python3.x project. 
+
     Run __main__.py
 
     Select the path to the directory with the files you want to convert.
