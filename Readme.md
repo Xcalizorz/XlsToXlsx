@@ -15,17 +15,16 @@ Install the requirements:
 
 ### Use the program
 
-Please keep in mind, this is a Python3.x project. 
+Please keep in mind, this is a Python3.x project.
 
     Run __main__.py
 
     Select the path to the directory with the files you want to convert.
 
-
 ## What happens
 
-    1. A copy of the directory will be created 
-      1. Directoryname + "new"
+    1. A copy of the directory will be created
+      1. Directory name + "new"
     2. All .xls files will be converted to .xlsx
     3. Old .xls files will be deleted from the new directory
 
