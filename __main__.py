@@ -10,7 +10,7 @@ def __main__():
     output_path = os.path.normpath(input_path + "_new")
 
     # Converting block
-    converter = FileManipulator(output_path, input_path)
+    converter = FileManipulator(input_path, output_path)
 
     converter.copy_directory(input_path, output_path)
 

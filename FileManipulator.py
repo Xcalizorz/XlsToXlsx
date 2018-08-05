@@ -28,7 +28,7 @@ class FileManipulator:
         :return:
         """
         temp = []
-        for root, directories, filenames in os.walk(self.input_directory):
+        for root, directories, filenames in os.walk(self.output_directory):
             for filename in filenames:
                 if re.match(pattern, filename):
                     temp.append(os.path.join(root, filename))
