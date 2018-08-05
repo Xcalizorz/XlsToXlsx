@@ -4,3 +4,4 @@
 - [ ] Create GUI
   - [ ] **Prefered:** Electron
   - [ ] tKinter
+    - [x] Take directory path
