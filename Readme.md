@@ -1,12 +1,13 @@
 # XlsToXlsx
 
 You can convert all .xls files from a given input path to .xlsx
+\
 Pictures won't be converted yet.
 
 ## How to use
 
 ### Install requirements
-    
+
 Install the requirements by
 
     cd /PATH/TO/XlsToXlsx
@@ -14,7 +15,9 @@ Install the requirements by
 
 ### Use the program
 
-    Give the path to the directory with the files you want to convert.
+    Run __main__.py
+
+    Select the path to the directory with the files you want to convert.
 
 
 ## What happens
