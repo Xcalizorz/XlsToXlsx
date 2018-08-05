@@ -8,7 +8,7 @@ Pictures won't be converted yet.
 
 ### Install requirements
 
-Install the requirements by
+Install the requirements:
 
     cd /PATH/TO/XlsToXlsx
     pip install -r requirements.txt
