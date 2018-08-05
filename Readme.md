@@ -1,7 +1,7 @@
 # XlsToXlsx
 
 You can batch convert all .xls files in a given input path to .xlsx
-\
+
 Pictures and design won't be converted yet.
 
 ## How to use
