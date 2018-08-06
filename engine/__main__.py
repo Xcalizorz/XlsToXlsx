@@ -19,5 +19,5 @@ def __main__():
 
     converter.xls_to_xlsx(xls_files)
 
-
-__main__()
+if __name__ == '__main__':
+    __main__()
