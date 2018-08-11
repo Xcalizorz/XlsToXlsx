@@ -24,7 +24,7 @@ Please keep in mind, this is a Python3.x project.
 ## What happens
 
     1. A copy of the directory will be created
-      1. Directory name + "new"
+      1. Directory name + "_new"
     2. All .xls files will be converted to .xlsx
     3. Old .xls files will be deleted from the new directory
 
