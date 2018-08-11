@@ -18,7 +18,7 @@ def __main__():
     # creates a list of paths to the .xls files
     xls_files = converter.find_files("(.*?).xls$")
 
-    # creating the copy
+    # creating the copy if there are any .xls files
     if xls_files:
         converter.copy_directory(input_path, output_path)
         converter.xls_to_xlsx(xls_files)
