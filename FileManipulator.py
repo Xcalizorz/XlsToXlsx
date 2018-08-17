@@ -33,13 +33,18 @@ class FileManipulator:
         :return:
         """
         temp = []
+        quick_stop = False
         if not path:
-            path = self.output_directory
+            path = self.input_directory
+            # Input directory should not be searched entirely
+            quick_stop = True
 
         for root, directories, filenames in os.walk(path):
             for filename in filenames:
                 if re.match(pattern, filename):
                     temp.append(os.path.join(root, filename))
+                    if quick_stop:
+                        return temp
         return temp
 
     def copy_files(self, src, dst, relative_path=''):
