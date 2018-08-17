@@ -1,7 +1,7 @@
 import os
 import re
 import shutil
-import pandas as pd
+import pandas
 
 
 class FileManipulator:
@@ -19,16 +19,24 @@ class FileManipulator:
         self.output_directory = output_directory
         print(f"I'm going to insert the data in {self.output_directory} \n")
 
-    def find_files(self, pattern):
+    def find_files(self, pattern, path=''):
         """
         Searches the given input path for files, which are compatible
         with the given regEx pattern
+        
         :param pattern: Any regEx pattern, should start with r
         Example: r'^I am new to this$'
+        
+        :param path: Can be filled, if you want to search a specific path
+        If it is not filled, the output directory will be searched
+        
         :return:
         """
         temp = []
-        for root, directories, filenames in os.walk(self.output_directory):
+        if not path:
+            path = self.output_directory
+
+        for root, directories, filenames in os.walk(path):
             for filename in filenames:
                 if re.match(pattern, filename):
                     temp.append(os.path.join(root, filename))
@@ -39,7 +47,7 @@ class FileManipulator:
         https://docs.python.org/3/library/shutil.html
         :param src:         1 or N files | 1 directory
         :param dst:         N or 1 files | 1 directory
-        :param relative:    Any directory, relative to the source file
+        :param relative_path:    Any directory, relative to the source file
         :return:
         """
         # insert the new files and overwrite the old files
@@ -73,21 +81,17 @@ class FileManipulator:
         """
         for filepath in filepaths:
             # reading old xls files
-            xls_df = pd.read_excel(filepath, sheet_name=None)
+            xls_df = pandas.read_excel(filepath, sheet_name=None)
 
             # removing the .xls file
             os.unlink(filepath)
 
             # Create a pandas excel writer using xlsxwriter engine
-            writer = pd.ExcelWriter(filepath + "x", engine='xlsxwriter')
+            writer = pandas.ExcelWriter(filepath + "x", engine='xlsxwriter')
 
-            # if the file has more than 1 sheet
-            if len(xls_df) > 1:
-                for sheetname, info in xls_df.items():
-                    info.to_excel(writer, sheet_name=sheetname, index=False)
-            else:
-                # Writing first sheet to the file
-                xls_df.to_excel(writer, sheet_name='Sheet1', index=False)
+            # Write information to corresponding excel sheet
+            for sheetname, info in xls_df.items():
+                info.to_excel(writer, sheet_name=sheetname, index=False)
 
             # To add more sheets
             # other_dataframe.to_excel(writer, sheet_name='Sheet2', index=False)
@@ -104,3 +108,31 @@ class FileManipulator:
         except OSError:
             print("An error occurred, while copying!")
             print("Please delete the output folder, if it exists.")
+
+    def write_to_file(self, infos, paths, relative_path='', src_dst=''):
+        """
+        Creates files if needed and writes the given info into it
+        :param infos:
+        :param paths:
+        :param src_dst:
+        :param relative_path:
+        :return:
+        """
+        if isinstance(paths, (list, tuple)) and isinstance(infos, (list, tuple)):
+            for info, path in zip(infos, paths):
+                # Replace old with new data, if src given
+                if src_dst:
+                    self.copy_files(src_dst, path)
+                if info.strip():
+                    # path to file, which shall be created/written to
+                    file = open(os.path.join(os.path.dirname(path) + relative_path), "w+")
+                    file.write(info)
+                    file.close()
+        else:
+            if src_dst:
+                self.copy_files(src_dst, paths)
+            if infos.strip():
+                # path to file, which shall be created/written to
+                file = open(os.path.dirname(paths) + relative_path, "w+")
+                file.write(infos)
+                file.close()
