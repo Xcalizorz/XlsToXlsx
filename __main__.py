@@ -13,7 +13,6 @@ def __main__():
     output_path = os.path.normpath(input_path + "_new")
 
     # Converting block
-    
     converter = FileManipulator(input_path, output_path)
     
     # creates a list of paths to the .xls files
