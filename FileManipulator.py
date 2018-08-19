@@ -14,7 +14,7 @@ class FileManipulator:
         :param output_path: Directory to the output
         :type output_path: Path to directory
         """
-        if os.path.isdir(input_path) and os.path.isdir(output_path):
+        if os.path.isdir(input_path):
             self.input_path = input_path
             print(f"I'm going to search in {self.input_path} \n")
 
@@ -108,7 +108,13 @@ class FileManipulator:
             writer.save()
 
     def copy_directory(self, src, dst, delete=True):
-        # We make a full copy of the given project - all changes will be made there
+        """
+        We make a full copy of the given project - all changes will be made there
+        :param src:
+        :param dst:
+        :param delete:
+        :return:
+        """
         try:
             if os.path.isdir(dst) and delete:
                 shutil.rmtree(dst, ignore_errors=False)
@@ -129,11 +135,11 @@ class FileManipulator:
         :type dst_paths:
             Path to file, not a directory
         :param infos:
-            Optional parameter - either infos or info_paths must be given.
+            Optional part_parameters - either infos or info_paths must be given.
         :type infos:
             Information provided as String(s)
         :param info_paths:
-            Optional parameter - either infos or info_paths must be given.
+            Optional part_parameters - either infos or info_paths must be given.
         :type info_paths:
             Information provided as path to file(s)
         """
